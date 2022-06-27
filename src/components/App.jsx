@@ -14,14 +14,14 @@ class App extends Component {
 
   countTotalFeedback() {
     const { good, neutral, bad } = this.state;
-    const result = good + neutral + bad;
-    return result;
+    const sum = good + neutral + bad;
+    return sum;
   }
 
   countPositiveFeedbackPercentage() {
-    const result = this.countTotalFeedback();
+    const sum = this.countTotalFeedback();
     const { good } = this.state;
-    const positiveFeedback = (good * 100) / result;
+    const positiveFeedback = (good * 100) / sum;
 		return Math.round(positiveFeedback);
   }
 
@@ -37,11 +37,11 @@ class App extends Component {
 		const total = this.countTotalFeedback();
 		const positivePercentage = this.countPositiveFeedbackPercentage();
 
-		const objKey = Object.keys(this.state);
+		// const objKey = Object.keys(this.state);
     return (
 			<>
 				<Section title="Please leave feedback">
-					<FeedbackOptions options={objKey} onLeaveFeedback={this.onLeaveFeedback} />
+					<FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback={this.onLeaveFeedback} />
 				</Section>
 
 				{total === 0 ? (
