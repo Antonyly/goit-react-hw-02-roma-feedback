@@ -1,11 +1,11 @@
 import React from 'react';
-import shortid from 'shortid';
+import { nanoid } from 'nanoid'
 import propTypes from 'prop-types';
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
     const optionsBts = options.map(option => (
                 <button
-                    key={shortid.generate()}
+                    key={nanoid()}
                     type="button"
                     name={option}
                     onClick={onLeaveFeedback}>
@@ -25,7 +25,7 @@ FeedbackOptions.defaultProps = {
 }
 
 FeedbackOptions.propTypes = {
-    options: propTypes.array.isRequired,
+    options: propTypes.arrayOf(propTypes.string.isRequired),
     onLeaveFeedback: propTypes.func.isRequired,
 };
 
